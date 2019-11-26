@@ -13,9 +13,6 @@ import java.util.stream.Collectors;
 /**
  * @ClassName IndexController
  * @Description TODO
- * @Author jb.zhou
- * @Date 2019/11/26
- * @Version 1.0
  */
 @RestController
 @RequestMapping("/")

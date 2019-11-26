@@ -7,10 +7,6 @@ import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.spi.MetadataBuildingContext;
 
-/**
- *
- * @author
- */
 public class MyImplicitNamingStrategy extends ImplicitNamingStrategyJpaCompliantImpl {
 
 	/**

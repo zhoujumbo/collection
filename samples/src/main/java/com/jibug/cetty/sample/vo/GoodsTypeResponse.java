@@ -9,10 +9,6 @@ import java.util.Date;
 
 /**
  * @ClassName GoodsTypeResponse
- * @Description TODO
- * @Author jb.zhou
- * @Date 2019/11/26
- * @Version 1.0
  */
 @Data
 public class GoodsTypeResponse implements Serializable{

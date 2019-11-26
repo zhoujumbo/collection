@@ -3,6 +3,7 @@ package com.jibug.cetty.sample.common.jdbctemplate.impl;
 import com.jibug.cetty.sample.common.jdbctemplate.CommonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
@@ -13,15 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class CommonDaoImp implements CommonDao {
+public class CommonDaoImp  extends JdbcDaoSupport implements CommonDao {
 
-	@Autowired
-	protected JdbcTemplate jdbcTemplate;
-
-	public JdbcTemplate getJdbcTemplate(){
-		return jdbcTemplate;
-	}
-
+	@Override
 	public int batchUpdate(String[] sqls) {
 		Connection conn = null;
 		Statement st = null;
@@ -76,38 +71,40 @@ public class CommonDaoImp implements CommonDao {
 		}
 	}
 
+	@Override
 	public int getTotal(String sql) {
 		return getJdbcTemplate().queryForObject(sql,Integer.class);
 	}
 
+	@Override
 	public int getTotal(String sql, Object[] params) {
 		return getJdbcTemplate().queryForObject(sql, params,Integer.class);
 	}
-
+	@Override
 	public List<Map<String, Object>> queryForList(String sql) {
 		return getJdbcTemplate().queryForList(sql);
 	}
-
+	@Override
 	public List<Map<String, Object>> queryForList(String sql, Object[] params) {
 		return getJdbcTemplate().queryForList(sql, params);
 	}
-
+	@Override
 	public int update(String sql) {
 		return getJdbcTemplate().update(sql);
 	}
-
+	@Override
 	public int update(String sql, Object[] params) {
 		return getJdbcTemplate().update(sql, params);
 	}
-
+	@Override
 	public int queryForInt(String sql) {
 		return getJdbcTemplate().queryForObject(sql,Integer.class);
 	}
-
+	@Override
 	public int queryForInt(String sql, Object[] params) {
 		return getJdbcTemplate().queryForObject(sql, params,Integer.class);
 	}
-	
+	@Override
 	public SqlRowSet queryForRowSet(String sql, Object[] params) {
 		return  getJdbcTemplate().queryForRowSet( sql, params);
 	}

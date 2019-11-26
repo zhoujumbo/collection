@@ -14,9 +14,6 @@ import java.util.concurrent.ScheduledExecutorService;
 /**
  * @ClassName ScheduleConfig
  * @Description TODO
- * @Author jb.zhou
- * @Date 2019/9/26
- * @Version 1.0
  */
 @Configuration
 @EnableScheduling
