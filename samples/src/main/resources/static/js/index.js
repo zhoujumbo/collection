@@ -99,19 +99,78 @@
      */
     function _loadFormControl(){
         var _this = this;
-        _createIntervalJeDate('#tBeginDate', '#tEndDate');
+        // 类型
+        // 系列选择
+        $('#typeSele2').select2({
+            // tags: [{id:"-1",text:"选择/输入"}],
+            placeholder: "选择/输入",
+            width: '95%',
+            language : "zh-CN",
+            // minimumInputLength: 4,
+            allowClear: true,
+            // dropdownParent: $('.goods-modify-modal'),
+            ajax: {
+                url : _this.urlMap.series,
+                dataType : 'json',
+                type : "POST",
+                async: true,
+                cache:false,
+                delay : 250,
+                data : function(inputParams) {
+                    return {
+                        type : inputParams.term || '',
+                    };
+                },
+                processResults : function(data) {
+                    if (!data || data.length == 0){
+                        $('#seriesCodeSele').data('val',JSON.stringify("[]"));
+                        return [];
+                    }
+                    $('#seriesCodeSele').data('val',JSON.stringify(data));
+                    return {
+                        results : $.map(data, function(item) {
+                            return {
+                                text : item.seriesCode,
+                                id : item.seriesCode,
+                                seriesId : item.seriesId,
+                                seriesTitle : item.seriesTitle,
+                                pictureUrl : item.pictureUrl,
+                                cardUrl : item.cardUrl,
+                                sidePicUrl : item.sidePicUrl,
+                            }
+                        })
+                    };
+                }
+            }, // ajax end
+        }).on('change',function(e){  //select2:select
+            $('#seriesId').val('');
+            var data = $(this).select2("data")[0];
+            if(data){
 
-        /****select BEGIN****************************************/
-        // banner 类型
-        $('#sBannerTypeSele2').select2({
+            }
+        });
+        $('#typeSele2').select2({
             width: '60%',
             language : "zh-CN",
             minimumResultsForSearch: -1,
             placeholder: "请选择",
             data: (function(){
-                return $.extend(true,[],_this.bannerTypeSelect2Data)
+                return [
+                    {
+                        id:"",
+                        text:""
+                    },
+                    {}];
             })(),
         });
+
+
+
+
+        _createIntervalJeDate('#tBeginDate', '#tEndDate');
+
+        /****select BEGIN****************************************/
+
         //  banner 状态
         $('#sBannerStatusSele2').select2({
             width: '60%',
@@ -314,7 +373,7 @@
                 },
             };
         }
-    }; // createIntervalJeDate END
+    };
     /**
      * 公共方法
      * 重置表单
