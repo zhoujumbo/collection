@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>拆呗</title><!-- Bootstrap core CSS-->
+    <!--/*@thymesVar id="staticUrl" type="JDOMAbout"*/-->
+    <link href="/static/libs/layui/css/layui.css" rel="stylesheet" type="text/css">
+    <link href="/static/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- Page level plugin CSS-->
+    <link href="/static/libs/select2/select2.css" rel="stylesheet" type="text/css">
+    <link href="/static/libs/jedate/css/jedate.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md3">
+            <label class="">标题</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div class="layui-col-md3">
+            <label class="">类型</label>
+            <select name="type" id="type"></select>
+        </div>
+        <div class="layui-col-md6">
+            <label class="cus-form-label">统计区间</label>
+            <input type="text" name="beginDate" id="beginDate" style="width: 30%;" readonly/>
+            <span style="margin:0 0.75rem">-</span>
+            <input type="text" name="endDate" id="endDate" style="width: 30%;" readonly/>
+        </div>
+        <div class="layui-col-md3">
+            <label class="cus-form-label">类型排序</label>
+            <select name="sortType" id="sortType"></select>
+        </div>
+        <div class="layui-col-md3">
+            <label>增量排序</label>
+            <select name="sortIncrement" id="sortIncrement"></select>
+        </div>
+        <div class="layui-col-md6">
+            <input type="button" class="layui-btn layui-btn-normal" id="search" value="搜索" style="cursor: pointer; margin-left: 15px;"/>
+            <input type="button" class="layui-btn layui-btn-normal" id="reset" value="重置" style="cursor: pointer; margin-left: 15px;"/>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <table class="layui-hide" id="grid" lay-filter="grid"></table>
+        </div>
+    </div>
+
+</div>
+    <!--/*@thymesVar id="staticUrl" type="JDOMAbout"*/-->
+    <script src="/static/libs/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/libs/chart/Chart.min.js" type="text/javascript"></script>
+    <script src="/static/libs/select2/select2.js" type="text/javascript"></script>
+    <script src="/static/libs/jedate/js/jedate.min.js" type="text/javascript"></script>
+    <script src="/static/libs/layui/layui.js" type="text/javascript"></script>
+    <script src="/static/libs/customize/bo.common.js" type="text/javascript"></script>
+    <script src="/static/libs/customize/bo.xhr.ajax.hook.js" type="text/javascript"></script>
+    <script src="/static/libs/customize/bo.validation.core.js" type="text/javascript"></script>
+    <script src="/static/js/index.js" type="text/javascript"></script>
+</body>
+
+</html>
