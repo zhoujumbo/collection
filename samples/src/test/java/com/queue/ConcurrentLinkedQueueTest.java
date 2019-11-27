@@ -19,6 +19,37 @@ public class ConcurrentLinkedQueueTest {
      * https://www.jianshu.com/p/a4e0e3b872b0
      */
 
+
+    /**
+     *
+     方法摘要
+     boolean	add(E e)
+     将指定元素插入此队列的尾部。
+     boolean	contains(Object o)
+     如果此队列包含指定元素，则返回 true。
+     boolean	isEmpty()
+     如果此队列不包含任何元素，则返回 true。
+     Iterator<E>	iterator()
+     返回在此队列元素上以恰当顺序进行迭代的迭代器。
+     boolean	offer(E e)
+     将指定元素插入此队列的尾部。
+     E	peek()
+     获取但不移除此队列的头；如果此队列为空，则返回 null。
+     E	poll()
+     获取并移除此队列的头，如果此队列为空，则返回 null。
+     boolean	remove(Object o)
+     从队列中移除指定元素的单个实例（如果存在）。
+     int	size()
+     返回此队列中的元素数量。
+     Object[]	toArray()
+     返回以恰当顺序包含此队列所有元素的数组。
+     <T> T[]	toArray(T[] a)
+     返回以恰当顺序包含此队列所有元素的数组；返回数组的运行时类型是指定数组的运行时类型。
+     */
+
+
+
+
     @Test
     public void test01() throws InterruptedException {
         int peopleNum = 1000;//吃饭人数

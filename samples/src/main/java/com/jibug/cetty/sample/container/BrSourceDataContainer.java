@@ -1,16 +1,15 @@
 package com.jibug.cetty.sample.container;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class BrSourceDataContainer {
 
     private static BrSourceDataContainer mxSourceDataContainer;
-    private Map<Object, Object> cacheMap;
+    private ConcurrentLinkedQueue<String> queueBr;
     private BrSourceDataContainer() {
-        cacheMap =new ConcurrentHashMap<Object, Object>();
+        queueBr =  new ConcurrentLinkedQueue<>();
     }
     private final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
     private final Lock r = rwLock.readLock();
@@ -33,9 +32,9 @@ public class BrSourceDataContainer {
      * 获取所有cache信息
      * @return cacheItems
      */
-    public Map<Object, Object> getCacheItems() {
-        return this.cacheMap;
-    }
+//    public Map<Object, Object> getCacheItems() {
+//        return this.cacheMap;
+//    }
 
     /**
      * 清空cache
@@ -43,7 +42,7 @@ public class BrSourceDataContainer {
     public void clearAllItems() {
         w.lock();
         try{
-            cacheMap.clear();
+//            cacheMap.clear();
         }finally {
            w.unlock();
         }
@@ -56,9 +55,9 @@ public class BrSourceDataContainer {
     public Object getCacheItem(Object key) {
         r.lock();
         try {
-            if (cacheMap.containsKey(key)) {
-                return cacheMap.get(key);
-            }
+//            if (cacheMap.containsKey(key)) {
+//                return cacheMap.get(key);
+//            }
         } finally {
             r.unlock();
         }
@@ -71,9 +70,9 @@ public class BrSourceDataContainer {
     public void putCacheItem(Object key,Object value) {
         w.lock();
         try {
-            if (!cacheMap.containsKey(key)) {
-                cacheMap.put(key, value);
-            }
+//            if (!cacheMap.containsKey(key)) {
+//                cacheMap.put(key, value);
+//            }
         } finally {
             w.unlock();
         }
@@ -85,9 +84,9 @@ public class BrSourceDataContainer {
     public void removeCacheItem(Object key) {
         w.lock();
         try {
-            if (cacheMap.containsKey(key)) {
-                cacheMap.remove(key);
-            }
+//            if (cacheMap.containsKey(key)) {
+//                cacheMap.remove(key);
+//            }
         } finally {
             w.unlock();
         }
@@ -100,7 +99,7 @@ public class BrSourceDataContainer {
     public int getSize() {
         r.lock();
         try {
-            return cacheMap.size();
+            return queueBr.size();
         } finally {
             r.unlock();
         }
