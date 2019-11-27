@@ -1,8 +1,9 @@
 package com.jibug.cetty.core.utils;
 
-import com.jibug.cetty.core.log.LogUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  */
 
 public class JsoupUtils {
+    private final static Logger log = LoggerFactory.getLogger(JsoupUtils.class);
     private static final String UA_PHONE = "Mozilla/5.0 (Linux; Android 4.3; Nexus 10 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Safari/537.36";
     private static final String UA_PC = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36";
 
@@ -24,7 +26,7 @@ public class JsoupUtils {
         try {
             return Jsoup.connect(url).userAgent(UA_PC).timeout(TIME_OUT).ignoreContentType(true).get();
         } catch (IOException e) {
-            LogUtil.error(ERROR_DESC + url);
+            log.error(ERROR_DESC + url);
             throw new RuntimeException(ERROR_DESC + url);
         }
     }
@@ -33,7 +35,7 @@ public class JsoupUtils {
         try {
             return Jsoup.connect(url).userAgent(UA_PHONE).timeout(TIME_OUT).ignoreContentType(true).validateTLSCertificates(false).get();
         } catch (IOException e) {
-            LogUtil.error(ERROR_DESC + url);
+            log.error(ERROR_DESC + url);
             throw new RuntimeException(ERROR_DESC + url);
         }
     }
@@ -42,7 +44,7 @@ public class JsoupUtils {
         try {
             return Jsoup.connect(url).userAgent(UA_PHONE).timeout(TIME_OUT).header("Cookie", cookie).ignoreContentType(true).get();
         } catch (IOException e) {
-            LogUtil.error(ERROR_DESC + url);
+            log.error(ERROR_DESC + url);
             throw new RuntimeException(ERROR_DESC + url);
         }
     }

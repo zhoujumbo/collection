@@ -30,7 +30,7 @@ public class ImageUtils {
 
 
 
-//        System.out.println("do....");
+//        System.out.println("domain....");
 //        //BufferedImage bufferedImage = loadImageFile("E:\\test\\jerry.jpg");
 //        //save(bufferedImage,"E:\\test\\jerry1.jpg");
 //        //缩放图片
