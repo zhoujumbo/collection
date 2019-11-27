@@ -1,7 +1,9 @@
 package com.jibug.cetty.sample.service.impl;
 
 import com.jibug.cetty.sample.dao.MlGoodsMxDao;
-import com.jibug.cetty.sample.entity.MlGoodsMx;
+import com.jibug.cetty.sample.dao.mapper.MlGoodsMxMapper;
+import com.jibug.cetty.sample.entity.MlGoodsMxPo;
+import com.jibug.cetty.sample.entity.domain.MlGoodsMx;
 import com.jibug.cetty.sample.service.MlGoodsMxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +15,20 @@ public class MlGoodsMxServiceImpl implements MlGoodsMxService {
 
     @Autowired
     private MlGoodsMxDao mlGoodsMxDao;
+    @Autowired
+    private MlGoodsMxMapper mlGoodsMxMapper;
 
     /**
      * save
-     * @param mlGoodsMx
+     * @param mlGoodsMxPo
      */
     @Override
-    public void save(MlGoodsMx mlGoodsMx){
-        mlGoodsMxDao.save(mlGoodsMx);
+    public void save(MlGoodsMxPo mlGoodsMxPo){
+        mlGoodsMxDao.save(mlGoodsMxPo);
     }
 
     @Override
-    public void saveAll(List<MlGoodsMx> entities) throws Exception{
+    public void saveAll(List<MlGoodsMxPo> entities) throws Exception{
         mlGoodsMxDao.saveAll(entities);
     }
 
@@ -35,8 +39,20 @@ public class MlGoodsMxServiceImpl implements MlGoodsMxService {
 
 
     @Override
-    public void deleteBatch(List<MlGoodsMx> entities){
+    public void deleteBatch(List<MlGoodsMxPo> entities){
         mlGoodsMxDao.deleteAll(entities);
     }
+
+    /**
+     * insertBatch
+     * @param mlGoodsMxList
+     */
+    @Override
+    public void insertBatch(List<MlGoodsMx> mlGoodsMxList){
+        if(!mlGoodsMxList.isEmpty()){
+            mlGoodsMxMapper.insertBatch(mlGoodsMxList);
+        }
+    }
+
 
 }

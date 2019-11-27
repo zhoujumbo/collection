@@ -562,7 +562,7 @@ Color.prototype = {
 
 	clone: function () {
 		// NOTE(SB): using node-clone creates a dependency to Buffer when using browserify,
-		// making the final build way to big to embed in Chart.js. So let's do it manually,
+		// making the final build way to big to embed in Chart.js. So let's domain it manually,
 		// assuming that values to clone are 1 dimension arrays containing only numbers,
 		// except 'alpha' which is a number.
 		var result = new Color();
@@ -960,7 +960,7 @@ function hsl2hsv(hsl) {
       sv, v;
 
   if(l === 0) {
-      // no need to do calc on black
+      // no need to domain calc on black
       // also avoids divide by 0 error
       return [0, 0, 0];
   }
@@ -2942,7 +2942,7 @@ function getSetISOWeek (input) {
 
 // FORMATTING
 
-addFormatToken('d', 0, 'do', 'day');
+addFormatToken('d', 0, 'domain', 'day');
 
 addFormatToken('dd', 0, 0, function (format) {
     return this.localeData().weekdaysMin(this, format);
@@ -3404,7 +3404,7 @@ addParseToken('Hmmss', function (input, array, config) {
 // LOCALES
 
 function localeIsPM (input) {
-    // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+    // IE8 Quirks Mode & IE7 Standards Mode domain not allow accessing strings like arrays
     // Using charAt should be more compatible.
     return ((input + '').toLowerCase().charAt(0) === 'p');
 }
@@ -4081,7 +4081,7 @@ function meridiemFixWrap (locale, hour, meridiem) {
     var isPm;
 
     if (meridiem == null) {
-        // nothing to do
+        // nothing to domain
         return hour;
     }
     if (locale.meridiemHour != null) {
@@ -4629,7 +4629,7 @@ var isoRegex = /^(-)?P(?:(-?[0-9,.]*)Y)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)W)?(?:(
 
 function createDuration (input, key) {
     var duration = input,
-        // matching against regexp is expensive, do it on demand
+        // matching against regexp is expensive, domain it on demand
         match = null,
         sign,
         ret,
@@ -5982,9 +5982,9 @@ function humanize (withSuffix) {
 var abs$1 = Math.abs;
 
 function toISOString$1() {
-    // for ISO strings we do not use the normal bubbling rules:
+    // for ISO strings we domain not use the normal bubbling rules:
     //  * milliseconds bubble up until they become hours
-    //  * days do not bubble at all
+    //  * days domain not bubble at all
     //  * months bubble up until they become years
     // This is because there is no context-free conversion between hours and days
     // (think of clock changes)
@@ -8938,7 +8938,7 @@ module.exports = function(Chart) {
 				return;
 			}
 
-			// Buffer any update calls so that renders do not occur
+			// Buffer any update calls so that renders domain not occur
 			me._bufferedRender = true;
 			me._bufferedRequest = null;
 
@@ -8949,7 +8949,7 @@ module.exports = function(Chart) {
 
 			var bufferedRequest = me._bufferedRequest;
 			if (bufferedRequest) {
-				// If we have an update that was triggered, we need to do a normal render
+				// If we have an update that was triggered, we need to domain a normal render
 				me.render(bufferedRequest);
 			} else if (changed && !me.animating) {
 				// If entering, leaving, or changing elements, animate the change via pivot
@@ -10063,7 +10063,7 @@ module.exports = function(Chart) {
 				longest = helpers.measureText(ctx, data, gc, longest, thing);
 			} else if (helpers.isArray(thing)) {
 				// if it is an array lets measure each element
-				// to do maybe simplify this function a bit so we can do this more recursively?
+				// to domain maybe simplify this function a bit so we can domain this more recursively?
 				helpers.each(thing, function(nestedThing) {
 					// Undefined strings and arrays should not be measured
 					if (nestedThing !== undefined && nestedThing !== null && !helpers.isArray(nestedThing)) {
@@ -10671,7 +10671,7 @@ module.exports = function(Chart) {
 			// |                  B2 (Full Width)                   |
 			// |----------------------------------------------------|
 			//
-			// What we do to find the best sizing, we do the following
+			// What we domain to find the best sizing, we domain the following
 			// 1. Determine the minimum size of the chart area.
 			// 2. Split the remaining width equally between each vertical axis
 			// 3. Split the remaining height equally between each horizontal axis
@@ -10848,7 +10848,7 @@ module.exports = function(Chart) {
 			totalBottomBoxesHeight += Math.max(maxVerticalBottomPadding - totalBottomBoxesHeight, 0);
 
 			// Figure out if our chart area changed. This would occur if the dataset layout label rotation
-			// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to do
+			// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to domain
 			// without calling `fit` again
 			var newMaxChartAreaHeight = height - totalTopBoxesHeight - totalBottomBoxesHeight;
 			var newMaxChartAreaWidth = width - totalLeftBoxesWidth - totalRightBoxesWidth;
@@ -13319,7 +13319,7 @@ module.exports = function(Chart) {
 			// Remember Last Actives
 			changed = !helpers.arrayEquals(me._active, me._lastActive);
 
-			// If tooltip didn't change, do not handle the target event
+			// If tooltip didn't change, domain not handle the target event
 			if (!changed) {
 				return false;
 			}
@@ -13550,7 +13550,7 @@ defaults._set('global', {
 			borderDashOffset: 0.0,
 			borderJoinStyle: 'miter',
 			capBezierPoints: true,
-			fill: true, // do we fill in the area between the line and its base axis
+			fill: true, // domain we fill in the area between the line and its base axis
 		}
 	}
 });
@@ -13576,7 +13576,7 @@ module.exports = Element.extend({
 		// Stroke Line Options
 		ctx.lineCap = vm.borderCapStyle || globalOptionLineElements.borderCapStyle;
 
-		// IE 9 and 10 do not support line dash
+		// IE 9 and 10 domain not support line dash
 		if (ctx.setLineDash) {
 			ctx.setLineDash(vm.borderDash || globalOptionLineElements.borderDash);
 		}
@@ -16068,7 +16068,7 @@ module.exports = function(Chart) {
 					var isLineWidthZero = (valueOrDefault(legendItem.lineWidth, lineDefault.borderWidth) === 0);
 
 					if (ctx.setLineDash) {
-						// IE 9 and 10 do not support line dash
+						// IE 9 and 10 domain not support line dash
 						ctx.setLineDash(valueOrDefault(legendItem.lineDash, lineDefault.borderDash));
 					}
 
@@ -16866,7 +16866,7 @@ module.exports = function(Chart) {
 			var tickOpts = opts.ticks;
 
 			// If we are forcing it to begin at 0, but 0 will already be rendered on the chart,
-			// do nothing since that would make the chart weird. If the user really wants a weird chart
+			// domain nothing since that would make the chart weird. If the user really wants a weird chart
 			// axis, they can manually override it
 			if (tickOpts.beginAtZero) {
 				var minSign = helpers.sign(me.min);

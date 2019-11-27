@@ -2,14 +2,14 @@ package com.jibug.cetty.sample.reduce;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.basic.support.commons.business.json.util.FastJsonUtil;
+import com.basic.support.commons.business.logger.LogUtil;
 import com.google.common.base.Joiner;
 import com.jibug.cetty.core.Page;
 import com.jibug.cetty.core.Result;
 import com.jibug.cetty.core.handler.HandlerContext;
 import com.jibug.cetty.core.handler.ReduceHandlerAdapter;
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.FastJsonUtil;
-import com.jibug.cetty.sample.entity.MlGoodsType;
+import com.jibug.cetty.sample.entity.MlGoodsTypePo;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -49,7 +49,7 @@ public abstract class MlReducer<T,D> extends ReduceHandlerAdapter {
             String objects = (String) fieldResult.get("goodsType");
             if(StringUtils.isNotEmpty(objects)){
                 JSONArray arr = JSON.parseArray(objects);
-                List<MlGoodsType> mlList = FastJsonUtil.toBeanList(arr, MlGoodsType.class);
+                List<MlGoodsTypePo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsTypePo.class);
                 if (mlList == null || mlList.size()==0) {
                     LogUtil.error("MlGoodsTypeList 类型结果为空");
                     return;
@@ -62,7 +62,7 @@ public abstract class MlReducer<T,D> extends ReduceHandlerAdapter {
 
     }
 
-    protected abstract void saveType(List<MlGoodsType> mlList) throws Exception;
+    protected abstract void saveType(List<MlGoodsTypePo> mlList) throws Exception;
 
     protected void reduceGoods(Map<String, Object> fieldResult){
 

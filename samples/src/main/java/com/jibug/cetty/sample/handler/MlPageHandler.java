@@ -1,21 +1,20 @@
 package com.jibug.cetty.sample.handler;
 
 import com.alibaba.fastjson.JSONObject;
+import com.basic.support.commons.business.json.util.FastJsonUtil;
+import com.basic.support.commons.business.logger.LogUtil;
+import com.basic.support.commons.business.util.DateUtil;
 import com.google.common.collect.Lists;
 import com.jibug.cetty.core.Page;
 import com.jibug.cetty.core.Seed;
 import com.jibug.cetty.core.handler.HandlerContext;
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.DateUtil;
-import com.jibug.cetty.core.utils.FastJsonUtil;
 import com.jibug.cetty.sample.constants.MlGoodsConstants;
 import com.jibug.cetty.sample.constants.UrlTypeEnum;
-import com.jibug.cetty.sample.entity.MlGoodsType;
+import com.jibug.cetty.sample.entity.MlGoodsTypePo;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,8 @@ public abstract class MlPageHandler<T> extends BasePageHandler {
     protected static final Pattern PAGE_GOODS_REGEX_PATTERN = Pattern.compile("/MLM-.{1,}");
     protected static final Pattern PAGE_GOODSLIST_REGEX_PATTERN = Pattern.compile("/_Desde_(\\d+){1,}");
 
-
+    protected static final Pattern AMOUNT_PATTERN = Pattern.compile("(\\d+\\.\\d+)");
+    protected static final Pattern AMOUNT_2_PATTERN = Pattern.compile("(\\d+)");
 
     @Override
     public void process(HandlerContext ctx, Page page) {
@@ -47,7 +47,7 @@ public abstract class MlPageHandler<T> extends BasePageHandler {
      * @param ctx
      * @param page
      */
-    protected synchronized void parseGoodsType(HandlerContext ctx, Page page, String area){
+    protected synchronized void parseGoodsType(HandlerContext ctx, Page page, Short area){
         Matcher matcher = PAGE_TYPE_REGEX_PATTERN.matcher(page.getUrl());
         if (!matcher.find()) {
             return;
@@ -78,7 +78,6 @@ public abstract class MlPageHandler<T> extends BasePageHandler {
             if(seriesDom!=null){
                 seriesName.append(seriesDom.text());
             }
-//            String seriesUrl = seriesDom.attr("href");
 
             Elements ulItem = obj.select("ul>li>a");
             if(ulItem==null || ulItem.isEmpty()){
@@ -89,11 +88,10 @@ public abstract class MlPageHandler<T> extends BasePageHandler {
                 String typeName = ooo.text().trim();
                 String typeUrl = ooo.attr("href").trim();
                 mlList.add(FastJsonUtil.bean2JsonStr(
-                        new MlGoodsType()
+                        new MlGoodsTypePo()
                                 .setArea(area)
                                 .setSeries(seriesName.toString())
                                 .setEntry(typeName)
-                                .setUrl2(typeUrl) // url1 存大类别url  url2存小类别url
                                 .setCreatTime(DateUtil.currentTime())
                 ));
                 if(StringUtils.isNotEmpty(typeUrl)){
@@ -285,13 +283,11 @@ public abstract class MlPageHandler<T> extends BasePageHandler {
     public String extractAmountMsg(String ptCasinoMsg){
         String returnAmount = "";
         ptCasinoMsg = ptCasinoMsg.replace(",", "");
-        Pattern p=Pattern.compile("(\\d+\\.\\d+)");
-        Matcher m=p.matcher(ptCasinoMsg);
+        Matcher m = AMOUNT_PATTERN.matcher(ptCasinoMsg);
         if(m.find()){
             returnAmount = m.group(1);
         }else{
-            p= Pattern.compile("(\\d+)");
-            m = p.matcher(ptCasinoMsg);
+            m = AMOUNT_2_PATTERN.matcher(ptCasinoMsg);
             if(m.find()){
                 returnAmount = m.group(1);
             }

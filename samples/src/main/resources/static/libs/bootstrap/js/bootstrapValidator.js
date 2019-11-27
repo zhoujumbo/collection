@@ -127,7 +127,7 @@ if (typeof jQuery === 'undefined') {
 
             this.options = $.extend(true, this.options, options);
 
-            // When pressing Enter on any field in the form, the first submit button will do its job.
+            // When pressing Enter on any field in the form, the first submit button will domain its job.
             // The form then will be submitted.
             // I create a first hidden submit button
             this.$hiddenButton = $('<button/>')
@@ -936,7 +936,7 @@ if (typeof jQuery === 'undefined') {
                             that.updateStatus(updateAll ? $f.attr('data-bv-field') : $f, response.valid ? that.STATUS_VALID : that.STATUS_INVALID, v);
 
                             if (response.valid && that._submitIfValid === true) {
-                                // If a remote validator returns true and the form is ready to submit, then do it
+                                // If a remote validator returns true and the form is ready to submit, then domain it
                                 that._submit();
                             } else if (!response.valid && !verbose) {
                                 stop = true;

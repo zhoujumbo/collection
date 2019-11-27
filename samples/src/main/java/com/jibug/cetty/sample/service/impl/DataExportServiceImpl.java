@@ -1,12 +1,10 @@
 package com.jibug.cetty.sample.service.impl;
 
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.DateUtil;
-import com.jibug.cetty.core.utils.FastJsonUtil;
+import com.basic.support.commons.business.json.util.FastJsonUtil;
+import com.basic.support.commons.business.logger.LogUtil;
+import com.basic.support.commons.business.util.DateUtil;
 import com.jibug.cetty.sample.common.jdbctemplate.ResultSetIterator;
 import com.jibug.cetty.sample.common.poi.POIUtil;
-import com.jibug.cetty.sample.dao.TableManageDao;
-import com.jibug.cetty.sample.entity.TableManage;
 import com.jibug.cetty.sample.service.DataExportService;
 import com.jibug.cetty.sample.vo.ExportDataResponse;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,8 +38,6 @@ public class DataExportServiceImpl implements DataExportService {
     protected JdbcTemplate jdbcTemplate;
     @Autowired
     private DataExportService dataExportService;
-    @Autowired
-    private TableManageDao tableManageDao;
     /**
      * 数据库连接操作
      *
@@ -167,17 +162,17 @@ public class DataExportServiceImpl implements DataExportService {
     @Override
     public String exportMx(Integer page){
         // 查询最近一次统计结果
-        List<TableManage> tableManage = tableManageDao.getTopOne("MX");
-        if(tableManage==null || tableManage.size()==0){
-            LogUtil.warn("MX 未发现待导出结果");
-            return "MX 未发现待导出结果";
-        }
+//        List<TableManage> tableManage = tableManageDao.getTopOne("MX");
+//        if(tableManage==null || tableManage.size()==0){
+//            LogUtil.warn("MX 未发现待导出结果");
+//            return "MX 未发现待导出结果";
+//        }
         StringBuffer sqlParaBuffer = new StringBuffer();
         sqlParaBuffer.append("SELECT result.goods_id,result.title,result.series,result.actual_price, ");
         sqlParaBuffer.append(" date_format(result.min_time ,'%Y-%m-%d' ) min_time,  CONCAT(result.min,'') min,");
         sqlParaBuffer.append("  date_format(result.max_time ,'%Y-%m-%d' ) max_time, CONCAT(result.max,'') max, CONCAT(result.sub,'') sub,types.entry   ");
         sqlParaBuffer.append(" ,IFNULL(result.post_free,'') post_free,IFNULL(result.os_warehouse,'') os_warehouse FROM  ");
-        sqlParaBuffer.append(tableManage.stream().findFirst().get().getTable_name());
+//        sqlParaBuffer.append(tableManage.stream().findFirst().get().getTable_name());
         sqlParaBuffer.append(" as result");
         sqlParaBuffer.append(" LEFT  JOIN");
         sqlParaBuffer.append(" (SELECT a5.entry FROM");
@@ -207,17 +202,17 @@ public class DataExportServiceImpl implements DataExportService {
     @Override
     public String exportBr(Integer page){
         // 查询最近一次统计结果
-        List<TableManage> tableManage = tableManageDao.getTopOne("BR");
-        if(tableManage==null || tableManage.size()==0){
-            LogUtil.warn("BR 未发现待导出结果");
-            return "BR 未发现待导出结果";
-        }
+//        List<TableManage> tableManage = tableManageDao.getTopOne("BR");
+//        if(tableManage==null || tableManage.size()==0){
+//            LogUtil.warn("BR 未发现待导出结果");
+//            return "BR 未发现待导出结果";
+//        }
         StringBuffer sqlParaBuffer = new StringBuffer();
         sqlParaBuffer.append("SELECT result.goods_id,result.title,result.series,result.actual_price, ");
         sqlParaBuffer.append(" date_format(result.min_time ,'%Y-%m-%d' ) min_time,  CONCAT(result.min,'') min,");
         sqlParaBuffer.append("  date_format(result.max_time ,'%Y-%m-%d' ) max_time, CONCAT(result.max,'') max, CONCAT(result.sub,'') sub,types.entry   ");
         sqlParaBuffer.append(" ,IFNULL(result.post_free,'') post_free,IFNULL(result.os_warehouse,'') os_warehouse FROM  ");
-        sqlParaBuffer.append(tableManage.stream().findFirst().get().getTable_name());
+//        sqlParaBuffer.append(tableManage.stream().findFirst().get().getTable_name());
         sqlParaBuffer.append(" as result");
         sqlParaBuffer.append(" LEFT  JOIN");
         sqlParaBuffer.append(" (SELECT a5.entry FROM");

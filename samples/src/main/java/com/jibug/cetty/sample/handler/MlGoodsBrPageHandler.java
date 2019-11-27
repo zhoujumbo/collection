@@ -1,11 +1,11 @@
 package com.jibug.cetty.sample.handler;
 
+import com.basic.support.commons.business.logger.LogUtil;
 import com.jibug.cetty.core.Page;
 import com.jibug.cetty.core.Seed;
 import com.jibug.cetty.core.handler.HandlerContext;
-import com.jibug.cetty.core.log.LogUtil;
 import com.jibug.cetty.sample.constants.AreaTypeEnum;
-import com.jibug.cetty.sample.entity.MlGoodsBr;
+import com.jibug.cetty.sample.entity.MlGoodsBrPo;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
  * 抓取
  */
 @Component
-public class MlGoodsBrPageHandler extends MlPageHandler<MlGoodsBr> {
+public class MlGoodsBrPageHandler extends MlPageHandler<MlGoodsBrPo> {
 
     @Override
     protected void parseRoute(HandlerContext ctx, Page page) {
@@ -28,7 +28,7 @@ public class MlGoodsBrPageHandler extends MlPageHandler<MlGoodsBr> {
             Matcher matcher2 = PAGE_GOODS_REGEX_PATTERN.matcher(page.getUrl());
             if (matcher.find()) {
                 LogUtil.info("当前处理的是MlGoodsBr类别[{}]",pageUrl);
-                parseGoodsType(ctx, page, AreaTypeEnum.BR.message());
+                parseGoodsType(ctx, page, AreaTypeEnum.BR.code());
             }else
             if (matcher2.find()) {
                 return;

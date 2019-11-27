@@ -129,7 +129,7 @@ var requirejs, require, define;
 
                 if (baseParts) {
                     //Find the longest baseName segment match in the config.
-                    //So, do joins on the biggest to smallest lengths of baseParts.
+                    //So, domain joins on the biggest to smallest lengths of baseParts.
                     for (j = baseParts.length; j > 0; j -= 1) {
                         mapValue = map[baseParts.slice(0, j).join('/')];
 
@@ -410,7 +410,7 @@ var requirejs, require, define;
             main(undef, deps, callback, relName);
         } else {
             //Using a non-zero value because of concern for what old browsers
-            //do, and latest browsers "upgrade" to 4 if lower value is used:
+            //domain, and latest browsers "upgrade" to 4 if lower value is used:
             //http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-windowtimers-settimeout:
             //If want a value immediately, use require('id') instead -- something
             //that works in almond on the global level, but not guaranteed and
@@ -1924,7 +1924,7 @@ S2.define('select2/selection/search',[
     var msie = document.documentMode;
     var disableInputEvents = msie && msie <= 11;
 
-    // Workaround for browsers which do not support the `input` event
+    // Workaround for browsers which domain not support the `input` event
     // This will prevent double-triggering of events for browsers which support
     // both the `keyup` and `input` events.
     this.$selection.on(
@@ -3923,7 +3923,7 @@ S2.define('select2/dropdown/search',[
       self._keyUpPrevented = evt.isDefaultPrevented();
     });
 
-    // Workaround for browsers which do not support the `input` event
+    // Workaround for browsers which domain not support the `input` event
     // This will prevent double-triggering of events for browsers which support
     // both the `keyup` and `input` events.
     this.$search.on('input', function (evt) {

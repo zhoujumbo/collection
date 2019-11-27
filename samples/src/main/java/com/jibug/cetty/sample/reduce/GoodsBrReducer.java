@@ -1,11 +1,12 @@
 package com.jibug.cetty.sample.reduce;
 
 import com.alibaba.fastjson.JSONArray;
+import com.basic.support.commons.business.json.util.FastJsonUtil;
+import com.basic.support.commons.business.logger.LogUtil;
 import com.google.common.base.Joiner;
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.FastJsonUtil;
-import com.jibug.cetty.sample.entity.MlGoodsBr;
-import com.jibug.cetty.sample.entity.MlGoodsType;
+import com.jibug.cetty.sample.constants.AreaTypeEnum;
+import com.jibug.cetty.sample.entity.MlGoodsBrPo;
+import com.jibug.cetty.sample.entity.MlGoodsTypePo;
 import com.jibug.cetty.sample.service.MlGoodsBrService;
 import com.jibug.cetty.sample.service.MlGoodsTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author heyingcai
  */
 @Component
-public class GoodsBrReducer extends MlReducer<MlGoodsBr,MlGoodsType> {
+public class GoodsBrReducer extends MlReducer<MlGoodsBrPo,MlGoodsTypePo> {
 
     private static Joiner joiner = Joiner.on("|");
     private static Map<String, String> oldBrMap = new ConcurrentHashMap<>(16);
@@ -33,9 +34,9 @@ public class GoodsBrReducer extends MlReducer<MlGoodsBr,MlGoodsType> {
     private MlGoodsBrService mlGoodsBrService;
 
     @Override
-    protected void saveType(List<MlGoodsType> mlList) throws Exception {
-        List<MlGoodsType> oldList = mlGoodsTypeService.queryListByArea("Br");
-        List<MlGoodsType> saveRsult = new ArrayList<>();
+    protected void saveType(List<MlGoodsTypePo> mlList) throws Exception {
+        List<MlGoodsTypePo> oldList = mlGoodsTypeService.queryListByArea(AreaTypeEnum.BR.code());
+        List<MlGoodsTypePo> saveRsult = new ArrayList<>();
         if (oldList == null) {
             try {
                 mlGoodsTypeService.batchInseartOrUpdate(mlList);
@@ -63,7 +64,7 @@ public class GoodsBrReducer extends MlReducer<MlGoodsBr,MlGoodsType> {
 
     @Override
     protected void saveGoods(JSONArray arr){
-        List<MlGoodsBr> mlList = FastJsonUtil.toBeanList(arr, MlGoodsBr.class);
+        List<MlGoodsBrPo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsBrPo.class);
         if(mlList==null || mlList.size()<=0){
             return;
         }

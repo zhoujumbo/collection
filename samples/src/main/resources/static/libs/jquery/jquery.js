@@ -19,7 +19,7 @@
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
-		// For environments that do not have a `window` with a `document`
+		// For environments that domain not have a `window` with a `document`
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
@@ -1364,7 +1364,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		docElem.msMatchesSelector) )) ) {
 
 		assert(function( el ) {
-			// Check to see if it's possible to do matchesSelector
+			// Check to see if it's possible to domain matchesSelector
 			// on a disconnected node (IE 9)
 			support.disconnectedMatch = matches.call( el, "*" );
 
@@ -1476,7 +1476,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
 				0;
 
-		// If the nodes are siblings, we can do a quick check
+		// If the nodes are siblings, we can domain a quick check
 		} else if ( aup === bup ) {
 			return siblingCheck( a, b );
 		}
@@ -2068,7 +2068,7 @@ Expr = Sizzle.selectors = {
 			// http://www.w3.org/TR/selectors/#empty-pseudo
 			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
-			// nodeType < 6 works because attributes (2) do not appear as children
+			// nodeType < 6 works because attributes (2) domain not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
 				if ( elem.nodeType < 6 ) {
 					return false;
@@ -4704,8 +4704,8 @@ var wrapMap = {
 	// Support: IE <=9 only
 	option: [ 1, "<select multiple='multiple'>", "</select>" ],
 
-	// XHTML parsers do not magically insert elements in the
-	// same way that tag soup parsers do. So we cannot shorten
+	// XHTML parsers domain not magically insert elements in the
+	// same way that tag soup parsers domain. So we cannot shorten
 	// this by omitting <tbody> or other required elements.
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
@@ -6798,7 +6798,7 @@ function genFx( type, includeWidth ) {
 		i = 0,
 		attrs = { height: type };
 
-	// If we include width, step value is 1 to do all cssExpand values,
+	// If we include width, step value is 1 to domain all cssExpand values,
 	// otherwise step value is 2 to skip over Left and Right
 	includeWidth = includeWidth ? 1 : 0;
 	for ( ; i < 4; i += 2 - includeWidth ) {
@@ -7065,7 +7065,7 @@ function Animation( elem, properties, options ) {
 
 			deferred.notifyWith( elem, [ animation, percent, remaining ] );
 
-			// If there's more to do, yield
+			// If there's more to domain, yield
 			if ( percent < 1 && length ) {
 				return remaining;
 			}
@@ -8119,7 +8119,7 @@ jQuery.extend( jQuery.event, {
 
 		cur = tmp = elem = elem || document;
 
-		// Don't do events on text and comment nodes
+		// Don't domain events on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
 			return;
 		}
@@ -8212,7 +8212,7 @@ jQuery.extend( jQuery.event, {
 		}
 		event.type = type;
 
-		// If nobody prevented the default action, do it now
+		// If nobody prevented the default action, domain it now
 		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
 
 			if ( ( !special._default ||
@@ -8220,7 +8220,7 @@ jQuery.extend( jQuery.event, {
 				acceptData( elem ) ) {
 
 				// Call a native DOM method on the target with the same name as the event.
-				// Don't do default actions on window, that's where global variables be (#6170)
+				// Don't domain default actions on window, that's where global variables be (#6170)
 				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
@@ -8704,7 +8704,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 
 		if ( current ) {
 
-			// There's only work to do if current dataType is non-auto
+			// There's only work to domain if current dataType is non-auto
 			if ( current === "*" ) {
 
 				current = prev;

@@ -1,6 +1,6 @@
 package com.jibug.cetty.sample.service.impl;
 
-import com.jibug.cetty.core.log.LogUtil;
+import com.basic.support.commons.business.logger.LogUtil;
 import com.jibug.cetty.sample.service.TaskService;
 import com.jibug.cetty.sample.service.support.CrawlerService;
 import org.springframework.scheduling.annotation.Async;

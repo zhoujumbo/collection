@@ -1,6 +1,5 @@
 package com.jibug.cetty.sample.schedule;
 
-import com.jibug.cetty.core.log.LogUtil;
 import com.jibug.cetty.sample.common.ClassPathTxt;
 import com.jibug.cetty.sample.schedule.tasks.MlTask;
 import com.jibug.cetty.sample.service.DataExportService;
@@ -10,8 +9,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 /**
  * 多线程 定时任务

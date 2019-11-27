@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "ml_goods_br")
-public class MlGoodsBr implements Serializable{
+public class MlGoodsBrPo implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,4 +50,53 @@ public class MlGoodsBr implements Serializable{
     private String salesVolume;
 
 
+    public MlGoodsBrPo setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public MlGoodsBrPo setGoodsId(String goodsId) {
+        this.goodsId = goodsId == null ? null : goodsId.trim();
+        return this;
+    }
+
+    public MlGoodsBrPo setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+        return this;
+    }
+
+    public MlGoodsBrPo setSeries(String series) {
+        this.series = series == null ? null : series.trim();
+        return this;
+    }
+
+    public MlGoodsBrPo setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
+        return this;
+    }
+
+    public MlGoodsBrPo setUrl1(String url1) {
+        this.url1 = url1 == null ? null : url1.trim();
+        return this;
+    }
+
+    public MlGoodsBrPo setPostFree(Short postFree) {
+        this.postFree = postFree;
+        return this;
+    }
+
+    public MlGoodsBrPo setOsWarehouse(Short osWarehouse) {
+        this.osWarehouse = osWarehouse;
+        return this;
+    }
+
+    public MlGoodsBrPo setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+        return this;
+    }
+
+    public MlGoodsBrPo setSalesVolume(String salesVolume) {
+        this.salesVolume = salesVolume == null ? null : salesVolume.trim();
+        return this;
+    }
 }

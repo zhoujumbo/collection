@@ -2,11 +2,11 @@ package com.jibug.cetty.sample.common.jdbctemplate.impl;
 
 import com.jibug.cetty.sample.common.jdbctemplate.CommonDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +15,12 @@ import java.util.Map;
 
 @Repository
 public class CommonDaoImp  extends JdbcDaoSupport implements CommonDao {
+
+	@Autowired
+	public CommonDaoImp(DataSource dataSource) {
+		this.setDataSource(dataSource);
+	}
+
 
 	@Override
 	public int batchUpdate(String[] sqls) {

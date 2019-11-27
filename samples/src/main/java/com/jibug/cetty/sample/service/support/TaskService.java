@@ -1,6 +1,7 @@
 package com.jibug.cetty.sample.service.support;
 
 import com.alibaba.fastjson.JSONArray;
+import com.basic.support.commons.business.logger.LogUtil;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -28,7 +29,7 @@ public class TaskService {
             String jsonString = IOUtils.toString(resource.getInputStream(), Charset.forName("UTF-8").toString());
             taskObject = JSONArray.parseArray(jsonString);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtil.error("crawler.json读取任务错误");
         }
     }
 

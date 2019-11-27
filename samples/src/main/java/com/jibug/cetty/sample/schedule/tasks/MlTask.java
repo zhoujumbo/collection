@@ -1,21 +1,15 @@
 package com.jibug.cetty.sample.schedule.tasks;
 
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.DateUtil;
+import com.basic.support.commons.business.logger.LogUtil;
+import com.basic.support.commons.business.util.DateUtil;
 import com.jibug.cetty.sample.common.jdbctemplate.CommonDao;
 import com.jibug.cetty.sample.common.jdbctemplate.SqlParaBuffer;
 import com.jibug.cetty.sample.constants.MlGoodsConstants;
 import com.jibug.cetty.sample.dao.MlGoodsBrDao;
 import com.jibug.cetty.sample.dao.MlGoodsMxDao;
-import com.jibug.cetty.sample.dao.TableManageDao;
-import com.jibug.cetty.sample.entity.MlGoodsBr;
-import com.jibug.cetty.sample.entity.TableManage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.unit.DataUnit;
-
-import java.util.List;
 
 /**
  * 处理统计结果
@@ -25,8 +19,6 @@ public class MlTask {
 
     @Autowired
     private CommonDao commonDao;
-    @Autowired
-    private TableManageDao tableManageDao;
     @Autowired
     private MlGoodsMxDao mlGoodsMxDao;
     @Autowired
@@ -50,13 +42,13 @@ public class MlTask {
         }
 
         // 查询最近一次统计结果
-        List<TableManage> tableManageList = tableManageDao.getTopOne("MX");
-        if(tableManageList==null || tableManageList.size()==0){
-            simpleTableCount("MX",cnt);
-        }else{
-            TableManage tableManage = tableManageList.stream().findFirst().get();
-            incrementTableCount("MX",tableManage.getTable_name(),cnt);
-        }
+//        List<TableManage> tableManageList = tableManageDao.getTopOne("MX");
+//        if(tableManageList==null || tableManageList.size()==0){
+//            simpleTableCount("MX",cnt);
+//        }else{
+//            TableManage tableManage = tableManageList.stream().findFirst().get();
+//            incrementTableCount("MX",tableManage.getTable_name(),cnt);
+//        }
 
     }
 
@@ -78,13 +70,13 @@ public class MlTask {
         }
 
         // 查询最近一次统计结果
-        List<TableManage> tableManageList = tableManageDao.getTopOne("BR");
-        if(tableManageList==null || tableManageList.size()==0){
-            simpleTableCount("BR",cnt);
-        }else{
-            TableManage tableManage = tableManageList.stream().findFirst().get();
-            incrementTableCount("MX",tableManage.getTable_name(),cnt);
-        }
+//        List<TableManage> tableManageList = tableManageDao.getTopOne("BR");
+//        if(tableManageList==null || tableManageList.size()==0){
+//            simpleTableCount("BR",cnt);
+//        }else{
+//            TableManage tableManage = tableManageList.stream().findFirst().get();
+//            incrementTableCount("MX",tableManage.getTable_name(),cnt);
+//        }
     }
 
     @Transactional
@@ -136,13 +128,13 @@ public class MlTask {
         }
         if(flag){
             // 保存新的结果信息
-            TableManage addNewTbInfo = new TableManage();
-            addNewTbInfo.setOrigin(type);
-            addNewTbInfo.setTable_name(newTbName);
-            addNewTbInfo.setLength(String.valueOf(cnt));
-            addNewTbInfo.setCreat_time(DateUtil.ymdhmsFormatEasy());
-            addNewTbInfo.setStatus(Short.valueOf("0"));
-            tableManageDao.saveAndFlush(addNewTbInfo);
+//            TableManage addNewTbInfo = new TableManage();
+//            addNewTbInfo.setOrigin(type);
+//            addNewTbInfo.setTable_name(newTbName);
+//            addNewTbInfo.setLength(String.valueOf(cnt));
+//            addNewTbInfo.setCreat_time(DateUtil.ymdhmsFormatEasy());
+//            addNewTbInfo.setStatus(Short.valueOf("0"));
+//            tableManageDao.saveAndFlush(addNewTbInfo);
             // 删除爬去原数据
     //        mlGoodsMxDao.deleteAll();
             switch (type){
@@ -206,14 +198,14 @@ public class MlTask {
 
         if(flag){
             // 保存新的结果信息
-            TableManage addNewTbInfo = new TableManage();
-            addNewTbInfo.setOrigin(type);
-            addNewTbInfo.setTable_name(newTbName);
-            addNewTbInfo.setLength(String.valueOf(cnt));
-            addNewTbInfo.setCreat_time(DateUtil.ymdhmsFormatEasy());
-            addNewTbInfo.setStatus(Short.valueOf("0"));
-
-            tableManageDao.saveAndFlush(addNewTbInfo);
+//            TableManage addNewTbInfo = new TableManage();
+//            addNewTbInfo.setOrigin(type);
+//            addNewTbInfo.setTable_name(newTbName);
+//            addNewTbInfo.setLength(String.valueOf(cnt));
+//            addNewTbInfo.setCreat_time(DateUtil.ymdhmsFormatEasy());
+//            addNewTbInfo.setStatus(Short.valueOf("0"));
+//
+//            tableManageDao.saveAndFlush(addNewTbInfo);
             // 删除爬去原数据
             switch (type){
                 case "MX":

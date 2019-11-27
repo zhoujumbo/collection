@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jibug.cetty.sample.dao.mapper.MlGoodsBrMapper">
+  <resultMap id="BaseResultMap" type="com.jibug.cetty.sample.entity.domain.MlGoodsBr">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="os_warehouse" jdbcType="TINYINT" property="osWarehouse" />
+    <result column="post_free" jdbcType="TINYINT" property="postFree" />
+    <result column="sales_volume" jdbcType="INTEGER" property="salesVolume" />
+    <result column="series" jdbcType="VARCHAR" property="series" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, price, creat_time, goods_id, os_warehouse, post_free, sales_volume, series, title, 
+    url
+  </sql>
+  <select id="selectByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBrExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ml_goods_br
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ml_goods_br
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ml_goods_br
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBrExample">
+    delete from ml_goods_br
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBr">
+    insert into ml_goods_br (id, price, creat_time, 
+      goods_id, os_warehouse, post_free, 
+      sales_volume, series, title, 
+      url)
+    values (#{id,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{goodsId,jdbcType=VARCHAR}, #{osWarehouse,jdbcType=TINYINT}, #{postFree,jdbcType=TINYINT}, 
+      #{salesVolume,jdbcType=INTEGER}, #{series,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBr">
+    insert into ml_goods_br
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="osWarehouse != null">
+        os_warehouse,
+      </if>
+      <if test="postFree != null">
+        post_free,
+      </if>
+      <if test="salesVolume != null">
+        sales_volume,
+      </if>
+      <if test="series != null">
+        series,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="osWarehouse != null">
+        #{osWarehouse,jdbcType=TINYINT},
+      </if>
+      <if test="postFree != null">
+        #{postFree,jdbcType=TINYINT},
+      </if>
+      <if test="salesVolume != null">
+        #{salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="series != null">
+        #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List" >
+    insert into ml_goods_br (price, creat_time,
+    goods_id, os_warehouse, post_free,
+    sales_volume, series, title,
+    url)
+    values
+    <foreach collection ="list" item="item" separator =",">
+      (
+      #{price,jdbcType=DECIMAL},
+      #{creatTime,jdbcType=TIMESTAMP},
+      #{goodsId,jdbcType=VARCHAR},
+      #{osWarehouse,jdbcType=TINYINT},
+      #{postFree,jdbcType=TINYINT},
+      #{salesVolume,jdbcType=INTEGER},
+      #{series,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR},
+      #{url,jdbcType=VARCHAR}
+      )
+    </foreach >
+  </insert>
+
+  <select id="countByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBrExample" resultType="java.lang.Long">
+    select count(*) from ml_goods_br
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ml_goods_br
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.osWarehouse != null">
+        os_warehouse = #{record.osWarehouse,jdbcType=TINYINT},
+      </if>
+      <if test="record.postFree != null">
+        post_free = #{record.postFree,jdbcType=TINYINT},
+      </if>
+      <if test="record.salesVolume != null">
+        sales_volume = #{record.salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="record.series != null">
+        series = #{record.series,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ml_goods_br
+    set id = #{record.id,jdbcType=BIGINT},
+      price = #{record.price,jdbcType=DECIMAL},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      os_warehouse = #{record.osWarehouse,jdbcType=TINYINT},
+      post_free = #{record.postFree,jdbcType=TINYINT},
+      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
+      series = #{record.series,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBr">
+    update ml_goods_br
+    <set>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="osWarehouse != null">
+        os_warehouse = #{osWarehouse,jdbcType=TINYINT},
+      </if>
+      <if test="postFree != null">
+        post_free = #{postFree,jdbcType=TINYINT},
+      </if>
+      <if test="salesVolume != null">
+        sales_volume = #{salesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="series != null">
+        series = #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsBr">
+    update ml_goods_br
+    set price = #{price,jdbcType=DECIMAL},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      os_warehouse = #{osWarehouse,jdbcType=TINYINT},
+      post_free = #{postFree,jdbcType=TINYINT},
+      sales_volume = #{salesVolume,jdbcType=INTEGER},
+      series = #{series,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

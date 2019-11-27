@@ -15,14 +15,14 @@
 
         <!-- 链接数据库的配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.46.145:3306/blind_box?characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/mercadolibre?characterEncoding=UTF-8"
                         userId="root" password="123456">
         </jdbcConnection>
 
         <!-- 关于生成实体类的设置 -->
         <!-- targetPackage 生成代码的目标目录 -->
         <!-- targetProject 目录所属位置 -->
-        <javaModelGenerator targetPackage="com.shunwang.blindbox.core.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.jibug.cetty.sample.entity.domain" targetProject="src/main/java">
             <!-- 在targetPackge的基础上根据schema再生成一层package 默认flase -->
             <property name="enableSubPackages" value="true"/>
             <!-- 是否在get方法中 对String类型的字段做空的判断 -->
@@ -40,30 +40,22 @@
         </sqlMapGenerator>
 
         <!--关于生成dao层的设置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shunwang.blindbox.core.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jibug.cetty.sample.dao.mapper" targetProject="src/main/java">
             <!--同上-->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--需要生成的代码对应的表名-->
-        <table tableName="authorize_admin">
-            <property name="dtoName" value="AuthorizeAdmin"/>
+        <!--<table tableName="ml_goods_br">-->
+            <!--<property name="dtoName" value="MlGoodsBrDomain"/>-->
+        <!--</table>-->
+        <!--<table tableName="ml_goods_mx">-->
+            <!--<property name="dtoName" value="MlGoodsMxDomain"/>-->
+        <!--</table>-->
+        <table tableName="ml_goods_type">
+            <property name="dtoName" value="MlGoodsTypeDomain"/>
         </table>
-        <table tableName="authorize_roleadmin">
-            <property name="dtoName" value="AuthorizeRoleadmin"/>
-        </table>
-        <table tableName="authorize_role">
-            <property name="dtoName" value="AuthorizeRole"/>
-        </table>
-        <table tableName="authorize_roleresource">
-            <property name="dtoName" value="AuthorizeRoleresource"/>
-        </table>
-        <table tableName="authorize_resource">
-            <property name="dtoName" value="AuthorizeResource"/>
-        </table>
-        <table tableName="authorize_resource_urls">
-            <property name="dtoName" value="AuthorizeResourceUrls"/>
-        </table>
+
 
     </context>
 </generatorConfiguration>

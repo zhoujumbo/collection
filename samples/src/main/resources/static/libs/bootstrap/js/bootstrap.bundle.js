@@ -1390,7 +1390,7 @@ var Collapse = function () {
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * furnished to domain so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
@@ -1884,7 +1884,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
   offsets.marginLeft = 0;
 
   // Subtract margins of documentElement in case it's being used as parent
-  // we do this only on HTML because it's the only element that behaves
+  // we domain this only on HTML because it's the only element that behaves
   // differently when margins are applied to it. The margins are included in
   // the box of the documentElement, in the other cases not.
   if (!isIE10 && isHTML) {
@@ -2220,7 +2220,7 @@ function runModifiers(modifiers, data, ends) {
     var fn = modifier.function || modifier.fn;
     if (modifier.enabled && isFunction(fn)) {
       // Add properties to offsets to make them a complete clientRect object
-      // we do this before each modifier to make sure the previous one doesn't
+      // we domain this before each modifier to make sure the previous one doesn't
       // mess with these values
       data.offsets.popper = getClientRect(data.offsets.popper);
       data.offsets.reference = getClientRect(data.offsets.reference);
@@ -2337,7 +2337,7 @@ function destroy() {
   this.disableEventListeners();
 
   // remove the popper if user explicity asked for the deletion on destroy
-  // do not use `remove` because IE11 doesn't support it
+  // domain not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);
   }
@@ -3545,7 +3545,7 @@ var modifiers = {
    * want to delegate all the DOM manipulations to it.
    *
    * Note that if you disable this modifier, you must make sure the popper element
-   * has its position set to `absolute` before Popper.js can do its work!
+   * has its position set to `absolute` before Popper.js can domain its work!
    *
    * Just disable this modifier and define you own to achieve the desired effect.
    *

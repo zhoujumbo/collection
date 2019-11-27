@@ -2,38 +2,16 @@ package com.jibug.cetty.sample.web.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.jibug.cetty.core.log.LogUtil;
-import com.jibug.cetty.core.utils.FileUtil;
-import com.jibug.cetty.core.utils.MacUtil;
-import com.jibug.cetty.core.utils.encrypt.AESUtil;
+import com.basic.support.commons.business.logger.LogUtil;
 import com.jibug.cetty.sample.common.ClassPathTxt;
 import com.jibug.cetty.sample.schedule.tasks.MlTask;
 import com.jibug.cetty.sample.service.TaskService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executor;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/len")

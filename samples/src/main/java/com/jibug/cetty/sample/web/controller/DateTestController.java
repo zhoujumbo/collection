@@ -2,7 +2,6 @@ package com.jibug.cetty.sample.web.controller;
 
 
 import com.jibug.cetty.sample.common.ClassPathTxt;
-import com.jibug.cetty.sample.dao.TableManageDao;
 import com.jibug.cetty.sample.service.DataExportService;
 import com.jibug.cetty.sample.service.MlGoodsMxService;
 import org.springframework.beans.factory.annotation.Autowired;

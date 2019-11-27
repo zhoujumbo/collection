@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "ml_goods_type")
-public class MlGoodsType implements Serializable{
+public class MlGoodsTypePo implements Serializable{
 
 
     @Id
@@ -32,4 +32,31 @@ public class MlGoodsType implements Serializable{
     @Column(name = "area",columnDefinition="tinyint(4)")
     private Short area;
 
+
+    public MlGoodsTypePo setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public MlGoodsTypePo setSeries(String series) {
+        this.series = series == null ? null : series.trim();
+        return this;
+    }
+
+    public MlGoodsTypePo setEntry(String entry) {
+        this.entry = entry == null ? null : entry.trim();
+        return this;
+    }
+
+    public MlGoodsTypePo setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+        return this;
+    }
+
+    public MlGoodsTypePo setArea(Short area) {
+        this.area = area;
+        return this;
+    }
 }
+
+

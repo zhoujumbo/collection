@@ -1,6 +1,6 @@
 package com.jibug.cetty.sample.common;
 
-import com.jibug.cetty.core.log.LogUtil;
+import com.basic.support.commons.business.logger.LogUtil;
 import com.jibug.cetty.core.utils.FileUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
