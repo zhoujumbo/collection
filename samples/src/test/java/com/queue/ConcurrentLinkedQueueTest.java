@@ -10,13 +10,14 @@ import java.util.concurrent.Executors;
 /**
  * @ClassName ConcurrentLinkedQueueTest
  * @Description TODO
- * @Author jb.zhou
- * @Date 2019/11/27
- * @Version 1.0
  */
 public class ConcurrentLinkedQueueTest {
 
-
+    /**
+     * http://www.itxm.cn/post/19151.html
+     * https://www.jianshu.com/p/95ec319c79a5
+     * https://www.jianshu.com/p/a4e0e3b872b0
+     */
 
     @Test
     public void test01() throws InterruptedException {
