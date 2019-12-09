@@ -29,7 +29,7 @@ public class MultithreadScheduleTask {
     @Autowired
     private DataExportService dataExportService;
 
-    @Scheduled(fixedDelay = 50*1000)
+    @Scheduled(fixedDelay = 29*1000)
     public void task1(){
         try {
             LogUtil.warn("saveMx run");
@@ -40,7 +40,7 @@ public class MultithreadScheduleTask {
 
     }
 
-    @Scheduled(fixedDelay = 70*1000)
+    @Scheduled(fixedDelay = 31*1000)
     public void task2(){
         try {
             LogUtil.warn("saveBr run");

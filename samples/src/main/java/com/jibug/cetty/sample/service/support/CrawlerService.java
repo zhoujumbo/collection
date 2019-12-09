@@ -83,7 +83,7 @@ public class CrawlerService {
                     .setPayload(
                             payload.setConnectTimeout(MainConstants.TIME_OUT)
                             .addHeader("User-Agent", MainConstants.UA_WIN))
-                  .isAsync(true);
+                  .isAsync(false);
 
             bootstrap.start();
         }

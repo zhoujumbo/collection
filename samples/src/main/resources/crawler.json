@@ -5,7 +5,7 @@
     "threadNum": 10,
     "pageHandler": "mlGoodsMxPageHandler",
     "pageReducer": "goodsMxReducer",
-    "via": "mxg",
+    "via": "mx",
     "urlType": "TYPE",
     "status": 1
   },
