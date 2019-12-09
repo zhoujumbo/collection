@@ -5,8 +5,10 @@ import com.basic.support.commons.business.json.util.FastJsonUtil;
 import com.basic.support.commons.business.logger.LogUtil;
 import com.google.common.base.Joiner;
 import com.jibug.cetty.sample.constants.AreaTypeEnum;
+import com.jibug.cetty.sample.container.BrSourceDataContainer;
 import com.jibug.cetty.sample.entity.MlGoodsBrPo;
 import com.jibug.cetty.sample.entity.MlGoodsTypePo;
+import com.jibug.cetty.sample.entity.domain.MlGoodsBr;
 import com.jibug.cetty.sample.service.MlGoodsBrService;
 import com.jibug.cetty.sample.service.MlGoodsTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class GoodsBrReducer extends MlReducer<MlGoodsBrPo,MlGoodsTypePo> {
     private MlGoodsTypeService mlGoodsTypeService;
     @Autowired
     private MlGoodsBrService mlGoodsBrService;
+    @Autowired
+    private BrSourceDataContainer brContainer;
 
     @Override
     protected void saveType(List<MlGoodsTypePo> mlList) throws Exception {
@@ -64,16 +68,17 @@ public class GoodsBrReducer extends MlReducer<MlGoodsBrPo,MlGoodsTypePo> {
 
     @Override
     protected void saveGoods(JSONArray arr){
-        List<MlGoodsBrPo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsBrPo.class);
-        if(mlList==null || mlList.size()<=0){
-            return;
+//        List<MlGoodsBrPo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsBrPo.class);
+        List<MlGoodsBr> mlList = FastJsonUtil.toBeanList(arr, MlGoodsBr.class);
+        if(!mlList.isEmpty()){
+            mlList.parallelStream().forEach(brContainer::offer);
         }
-        try {
-            mlGoodsBrService.saveAll(mlList);
-        } catch (Exception e) {
-            LogUtil.error("{}",e.getStackTrace());
-            e.printStackTrace();
-        }
+//        try {
+////            mlGoodsBrService.saveAll(mlList);
+//        } catch (Exception e) {
+//            LogUtil.error("{}",e.getStackTrace());
+//            e.printStackTrace();
+//        }
     }
 
 

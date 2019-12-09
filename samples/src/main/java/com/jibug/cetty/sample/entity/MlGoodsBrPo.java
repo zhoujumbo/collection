@@ -35,10 +35,10 @@ public class MlGoodsBrPo implements Serializable{
     private String url1;
 
     @Column(name = "post_free",columnDefinition="tinyint(4)")
-    private Short postFree;
+    private Byte postFree;
 
     @Column(name = "os_warehouse",columnDefinition="tinyint(4)")
-    private Short osWarehouse;
+    private Byte osWarehouse;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
@@ -80,12 +80,12 @@ public class MlGoodsBrPo implements Serializable{
         return this;
     }
 
-    public MlGoodsBrPo setPostFree(Short postFree) {
+    public MlGoodsBrPo setPostFree(Byte postFree) {
         this.postFree = postFree;
         return this;
     }
 
-    public MlGoodsBrPo setOsWarehouse(Short osWarehouse) {
+    public MlGoodsBrPo setOsWarehouse(Byte osWarehouse) {
         this.osWarehouse = osWarehouse;
         return this;
     }

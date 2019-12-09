@@ -16,7 +16,7 @@
         <!-- 链接数据库的配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mercadolibre?characterEncoding=UTF-8"
-                        userId="root" password="123456">
+                        userId="root" password="111111">
         </jdbcConnection>
 
         <!-- 关于生成实体类的设置 -->
@@ -52,8 +52,21 @@
         <!--<table tableName="ml_goods_mx">-->
             <!--<property name="dtoName" value="MlGoodsMxDomain"/>-->
         <!--</table>-->
-        <table tableName="ml_goods_type">
-            <property name="dtoName" value="MlGoodsTypeDomain"/>
+        <!--<table tableName="ml_goods_type">-->
+            <!--<property name="dtoName" value="MlGoodsTypeDomain"/>-->
+        <!--</table>-->
+
+        <table tableName="mx_goods">
+            <property name="dtoName" value="MxGoods"/>
+        </table>
+        <table tableName="mx_goods_detail">
+            <property name="dtoName" value="MxGoodsDetail"/>
+        </table>
+        <table tableName="br_goods">
+            <property name="dtoName" value="BrGoods"/>
+        </table>
+        <table tableName="br_goods_detail">
+            <property name="dtoName" value="BrGoodsDetail"/>
         </table>
 
 

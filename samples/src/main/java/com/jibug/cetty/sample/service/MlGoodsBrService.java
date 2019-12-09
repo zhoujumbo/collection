@@ -11,4 +11,6 @@ public interface MlGoodsBrService {
     void saveAll(List<MlGoodsBrPo> entities) throws Exception;
 
     void insertBatch(List<MlGoodsBr> mlGoodsBrList);
+
+    void deleteOldData();
 }

@@ -309,4 +309,10 @@
       url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <delete id="deleteOldData" >
+    DELETE FROM ml_goods_br WHERE
+    date_sub(curdate(), INTERVAL 90 DAY) > date(`creat_time`)
+  </delete>
+
 </mapper>

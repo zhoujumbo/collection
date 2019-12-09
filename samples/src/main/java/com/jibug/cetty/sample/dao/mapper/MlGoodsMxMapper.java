@@ -3,10 +3,10 @@ package com.jibug.cetty.sample.dao.mapper;
 import com.jibug.cetty.sample.entity.domain.MlGoodsMx;
 import com.jibug.cetty.sample.entity.domain.MlGoodsMxExample;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Component
+@Repository
 public interface MlGoodsMxMapper {
     long countByExample(MlGoodsMxExample example);
 
@@ -31,4 +31,6 @@ public interface MlGoodsMxMapper {
     int updateByPrimaryKeySelective(MlGoodsMx record);
 
     int updateByPrimaryKey(MlGoodsMx record);
+
+    void deleteOldData();
 }

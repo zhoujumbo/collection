@@ -16,4 +16,6 @@ public interface MlGoodsMxService {
     void deleteBatch(List<MlGoodsMxPo> entities);
 
     void insertBatch(List<MlGoodsMx> mlGoodsMxList);
+
+    void deleteOldData();
 }

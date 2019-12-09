@@ -35,14 +35,14 @@ public class TaskRunController {
     }
 
 
-    @GetMapping("/count")
-    public String runCountResult(){
-        asyncServiceExecutor.execute(()->{
-            mlTask.getMxTheResult();
-            mlTask.getBrTheResult();
-        });
-        return "MX and BR , Result the task is being executed  ...";
-    }
+//    @GetMapping("/count")
+//    public String runCountResult(){
+//        asyncServiceExecutor.execute(()->{
+////            mlTask.getMxTheResult();
+////            mlTask.getBrTheResult();
+//        });
+//        return "MX and BR , Result the task is being executed  ...";
+//    }
 
     @GetMapping("/info")
     public JSONObject getInfo(){

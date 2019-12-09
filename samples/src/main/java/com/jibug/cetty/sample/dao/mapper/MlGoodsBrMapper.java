@@ -4,10 +4,11 @@ import com.jibug.cetty.sample.entity.domain.MlGoodsBr;
 import com.jibug.cetty.sample.entity.domain.MlGoodsBrExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public interface MlGoodsBrMapper {
     long countByExample(MlGoodsBrExample example);
 
@@ -32,4 +33,6 @@ public interface MlGoodsBrMapper {
     int updateByPrimaryKeySelective(MlGoodsBr record);
 
     int updateByPrimaryKey(MlGoodsBr record);
+
+    void deleteOldData();
 }

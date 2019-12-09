@@ -5,8 +5,10 @@ import com.basic.support.commons.business.json.util.FastJsonUtil;
 import com.basic.support.commons.business.logger.LogUtil;
 import com.google.common.base.Joiner;
 import com.jibug.cetty.sample.constants.AreaTypeEnum;
+import com.jibug.cetty.sample.container.MxSourceDataContainer;
 import com.jibug.cetty.sample.entity.MlGoodsMxPo;
 import com.jibug.cetty.sample.entity.MlGoodsTypePo;
+import com.jibug.cetty.sample.entity.domain.MlGoodsMx;
 import com.jibug.cetty.sample.service.MlGoodsMxService;
 import com.jibug.cetty.sample.service.MlGoodsTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class GoodsMxReducer extends MlReducer<MlGoodsMxPo,MlGoodsTypePo> {
     private MlGoodsTypeService mlGoodsTypeService;
     @Autowired
     private MlGoodsMxService mlGoodsMxService;
+    @Autowired
+    private MxSourceDataContainer mxContainer;
 
     @Override
     protected void saveType(List<MlGoodsTypePo> mlList) throws Exception {
@@ -67,16 +71,22 @@ public class GoodsMxReducer extends MlReducer<MlGoodsMxPo,MlGoodsTypePo> {
 
     @Override
     protected void saveGoods(JSONArray arr){
-        List<MlGoodsMxPo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsMxPo.class);
-        if(mlList==null || mlList.size()<=0){
-            return;
+        List<MlGoodsMx> mlList = FastJsonUtil.toBeanList(arr, MlGoodsMx.class);
+
+        if(!mlList.isEmpty()){
+            mlList.parallelStream().forEach(mxContainer::offer);
         }
-        try {
-            mlGoodsMxService.saveAll(mlList);
-        } catch (Exception e) {
-            LogUtil.error("{}",e.getStackTrace());
-            e.printStackTrace();
-        }
+
+//        List<MlGoodsMxPo> mlList = FastJsonUtil.toBeanList(arr, MlGoodsMxPo.class);
+//        if(mlList==null || mlList.size()<=0){
+//            return;
+//        }
+//        try {
+//            mlGoodsMxService.saveAll(mlList);
+//        } catch (Exception e) {
+//            LogUtil.error("{}",e.getStackTrace());
+//            e.printStackTrace();
+//        }
     }
 
 

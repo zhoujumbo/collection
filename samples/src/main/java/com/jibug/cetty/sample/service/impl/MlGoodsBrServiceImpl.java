@@ -47,4 +47,9 @@ public class MlGoodsBrServiceImpl implements MlGoodsBrService {
         }
     }
 
+
+    @Override
+    public void deleteOldData(){
+        mlGoodsBrMapper.deleteOldData();
+    }
 }

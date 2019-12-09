@@ -55,30 +55,31 @@ public class CrawlerService {
 
             String proxyIp;
             Proxy proxy = null;
-            try {
-                proxyIp = proxyPoolService.getProxyPoolIp();
-                if(StringUtils.isNotEmpty(proxyIp)){
-                    Object document = Configuration.defaultConfiguration().jsonProvider().parse(proxyIp);
+//            try {
+//                proxyIp = proxyPoolService.getProxyPoolIp();
+//                System.out.println(proxyIp);
+//                if(StringUtils.isNotEmpty(proxyIp)){
+//                    Object document = Configuration.defaultConfiguration().jsonProvider().parse(proxyIp);
+//
+//                    String ip = JsonPath.read(document, "$.data[0].ip");
+//                    Integer port = JsonPath.read(document, "$.data[0].port");
+//                    String scheme = JsonPath.read(document, "$.data[0].type");
+//                    proxy = new Proxy(ip,port,scheme);
+//                }
+//            } catch (IOException e) {
+//                LogUtil.error("proxy is null");
+//            }
 
-                    String ip = JsonPath.read(document, "$.data[0].ip");
-                    Integer port = JsonPath.read(document, "$.data[0].port");
-                    String scheme = JsonPath.read(document, "$.data[0].type");
-                    proxy = new Proxy(ip,port,scheme);
-                }
-            } catch (IOException e) {
-                LogUtil.error("proxy is null");
-            }
-
-            Payload payload = Optional.ofNullable(proxy)
-                    .map(var->Payload.custom().setProxy(var))
-                    .orElseGet(()->Payload.custom());
-
-            //定义爬虫引导程序
+//            Payload payload = Optional.ofNullable(proxy)
+//                    .map(var->Payload.custom().setProxy(var))
+//                    .orElseGet(()->Payload.custom());
+            Payload payload = Payload.custom();
+                    //定义爬虫引导程序
             Bootstrap bootstrap = Bootstrap.me()
                     .startSeed(seed)
                     .addHandler(applicationContext.getBean(task.getString("pageHandler"), ProcessHandlerAdapter.class))
                     .addHandler(applicationContext.getBean(task.getString("pageReducer"), ReduceHandlerAdapter.class))
-                    .setThreadNum(20)
+                    .setThreadNum(10)
                     .setPayload(
                             payload.setConnectTimeout(MainConstants.TIME_OUT)
                             .addHeader("User-Agent", MainConstants.UA_WIN))

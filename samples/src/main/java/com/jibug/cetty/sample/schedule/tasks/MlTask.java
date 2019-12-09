@@ -72,8 +72,13 @@ public class MlTask {
     }
 
 
+    public void delOldDataMx(){
+        mlGoodsMxService.deleteOldData();
+    }
 
-
+    public void delOldDataBr(){
+        mlGoodsBrService.deleteOldData();
+    }
 
 
 }

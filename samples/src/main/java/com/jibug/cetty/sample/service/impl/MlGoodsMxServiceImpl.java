@@ -54,5 +54,9 @@ public class MlGoodsMxServiceImpl implements MlGoodsMxService {
         }
     }
 
+    @Override
+    public void deleteOldData(){
+        mlGoodsMxMapper.deleteOldData();
+    }
 
 }

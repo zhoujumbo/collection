@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jibug.cetty.sample.dao.mapper.MlGoodsMxMapper">
-  <resultMap id="BaseResultMap" type="com.jibug.cetty.sample.entity.domain.MlGoodsMx">
+<mapper namespace="com.jibug.cetty.sample.dao.mapper.BrGoodsDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jibug.cetty.sample.entity.domain.BrGoodsDetail">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
     <result column="os_warehouse" jdbcType="TINYINT" property="osWarehouse" />
     <result column="post_free" jdbcType="TINYINT" property="postFree" />
     <result column="sales_volume" jdbcType="INTEGER" property="salesVolume" />
-    <result column="series" jdbcType="VARCHAR" property="series" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,16 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, price, creat_time, goods_id, os_warehouse, post_free, sales_volume, series, title, 
-    url
+    id, add_time, goods_id, os_warehouse, post_free, sales_volume
   </sql>
-  <select id="selectByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMxExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from ml_goods_mx
+    from br_goods_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,40 +87,35 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ml_goods_mx
+    from br_goods_detail
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from ml_goods_mx
+    delete from br_goods_detail
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMxExample">
-    delete from ml_goods_mx
+  <delete id="deleteByExample" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetailExample">
+    delete from br_goods_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMx">
-    insert into ml_goods_mx (id, price, creat_time, 
-      goods_id, os_warehouse, post_free, 
-      sales_volume, series, title, 
-      url)
-    values (#{id,jdbcType=BIGINT}, #{price,jdbcType=DECIMAL}, #{creatTime,jdbcType=TIMESTAMP}, 
-      #{goodsId,jdbcType=VARCHAR}, #{osWarehouse,jdbcType=TINYINT}, #{postFree,jdbcType=TINYINT}, 
-      #{salesVolume,jdbcType=INTEGER}, #{series,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetail">
+    insert into br_goods_detail (id, add_time, goods_id, 
+      os_warehouse, post_free, sales_volume
+      )
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{goodsId,jdbcType=VARCHAR}, 
+      #{osWarehouse,jdbcType=TINYINT}, #{postFree,jdbcType=TINYINT}, #{salesVolume,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMx">
-    insert into ml_goods_mx
+  <insert id="insertSelective" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetail">
+    insert into br_goods_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="creatTime != null">
-        creat_time,
+      <if test="addTime != null">
+        add_time,
       </if>
       <if test="goodsId != null">
         goods_id,
@@ -139,25 +129,13 @@
       <if test="salesVolume != null">
         sales_volume,
       </if>
-      <if test="series != null">
-        series,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="url != null">
-        url,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="creatTime != null">
-        #{creatTime,jdbcType=TIMESTAMP},
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="goodsId != null">
         #{goodsId,jdbcType=VARCHAR},
@@ -171,54 +149,22 @@
       <if test="salesVolume != null">
         #{salesVolume,jdbcType=INTEGER},
       </if>
-      <if test="series != null">
-        #{series,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List" >
-    insert into ml_goods_br (price, creat_time,
-    goods_id, os_warehouse, post_free,
-    sales_volume, series, title,
-    url)
-    values
-    <foreach collection ="list" item="item" separator =",">
-      (
-      #{price,jdbcType=DECIMAL},
-      #{creatTime,jdbcType=TIMESTAMP},
-      #{goodsId,jdbcType=VARCHAR},
-      #{osWarehouse,jdbcType=TINYINT},
-      #{postFree,jdbcType=TINYINT},
-      #{salesVolume,jdbcType=INTEGER},
-      #{series,jdbcType=VARCHAR},
-      #{title,jdbcType=VARCHAR},
-      #{url,jdbcType=VARCHAR}
-      )
-    </foreach >
-  </insert>
-  <select id="countByExample" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMxExample" resultType="java.lang.Long">
-    select count(*) from ml_goods_mx
+  <select id="countByExample" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetailExample" resultType="java.lang.Long">
+    select count(*) from br_goods_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update ml_goods_mx
+    update br_goods_detail
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=DECIMAL},
-      </if>
-      <if test="record.creatTime != null">
-        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.goodsId != null">
         goods_id = #{record.goodsId,jdbcType=VARCHAR},
@@ -232,44 +178,28 @@
       <if test="record.salesVolume != null">
         sales_volume = #{record.salesVolume,jdbcType=INTEGER},
       </if>
-      <if test="record.series != null">
-        series = #{record.series,jdbcType=VARCHAR},
-      </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.url != null">
-        url = #{record.url,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update ml_goods_mx
+    update br_goods_detail
     set id = #{record.id,jdbcType=BIGINT},
-      price = #{record.price,jdbcType=DECIMAL},
-      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
       goods_id = #{record.goodsId,jdbcType=VARCHAR},
       os_warehouse = #{record.osWarehouse,jdbcType=TINYINT},
       post_free = #{record.postFree,jdbcType=TINYINT},
-      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
-      series = #{record.series,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR}
+      sales_volume = #{record.salesVolume,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMx">
-    update ml_goods_mx
+  <update id="updateByPrimaryKeySelective" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetail">
+    update br_goods_detail
     <set>
-      <if test="price != null">
-        price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="creatTime != null">
-        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=VARCHAR},
@@ -283,35 +213,16 @@
       <if test="salesVolume != null">
         sales_volume = #{salesVolume,jdbcType=INTEGER},
       </if>
-      <if test="series != null">
-        series = #{series,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jibug.cetty.sample.entity.domain.MlGoodsMx">
-    update ml_goods_mx
-    set price = #{price,jdbcType=DECIMAL},
-      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+  <update id="updateByPrimaryKey" parameterType="com.jibug.cetty.sample.entity.domain.BrGoodsDetail">
+    update br_goods_detail
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
       goods_id = #{goodsId,jdbcType=VARCHAR},
       os_warehouse = #{osWarehouse,jdbcType=TINYINT},
       post_free = #{postFree,jdbcType=TINYINT},
-      sales_volume = #{salesVolume,jdbcType=INTEGER},
-      series = #{series,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR}
+      sales_volume = #{salesVolume,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-  <delete id="deleteOldData" >
-    DELETE FROM ml_goods_mx WHERE
-    date_sub(curdate(), INTERVAL 90 DAY) > date(`creat_time`)
-  </delete>
-
 </mapper>
