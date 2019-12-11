@@ -1,7 +1,9 @@
 package com.jibug.cetty.sample.dao.mapper;
 
+import com.basic.support.commons.business.mybatis.query.ConditionQuery;
 import com.jibug.cetty.sample.entity.domain.MlGoodsBr;
 import com.jibug.cetty.sample.entity.domain.MlGoodsBrExample;
+import com.jibug.cetty.sample.entity.domain.MlGoodsMx;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -35,4 +37,6 @@ public interface MlGoodsBrMapper {
     int updateByPrimaryKey(MlGoodsBr record);
 
     void deleteOldData();
+    List<MlGoodsBr> query(ConditionQuery query);
+    int queryCnt(ConditionQuery query);
 }

@@ -315,4 +315,36 @@
     date_sub(curdate(), INTERVAL 90 DAY) > date(`creat_time`)
   </delete>
 
+  <select id="query" resultMap="BaseResultMap" parameterType="com.shunwang.basic.support.commons.business.mybatis.query.ConditionQuery" >
+    select
+    t.id,
+    t.price,
+    t.creat_time,
+    t.goods_id,
+    t.os_warehouse,
+    t.post_free,
+    t.sales_volume,
+    t.series,
+    t.title,
+    t.url
+    from ml_goods_br t
+    <include refid="conditionQuery.core" />
+    order by
+    <choose>
+      <when test="paramMap.orderCol!=null">
+        ${paramMap.orderCol}
+      </when>
+      <otherwise>
+        id desc
+      </otherwise>
+    </choose>
+    <if test="paramMap.rp > 0">
+      LIMIT #{paramMap.firstResult},#{paramMap.rp}
+    </if>
+  </select>
+  <select id="queryCnt" parameterType="com.shunwang.basic.support.commons.business.mybatis.query.ConditionQuery" resultType="java.lang.Integer" >
+    select count(*) from ml_goods_br t
+    <include refid="conditionQuery.core" />
+  </select>
+
 </mapper>
