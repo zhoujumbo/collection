@@ -35,7 +35,7 @@
         <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
         <!-- json -->
         <json.version>20090211</json.version>
-        <jackson.version>2.9.6</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
     </properties>
 
 
